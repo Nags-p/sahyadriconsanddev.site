@@ -95,21 +95,90 @@ section {
     max-height: 75px;
 }
 
+/* in style.css */
+
+/* =========================================== */
+/*    "Blueprint / Structural" Nav Style       */
+/* =========================================== */
+
 .nav-links {
     list-style: none;
     display: flex;
 }
+
 .nav-links li {
-    margin-left: 30px;
+    margin-left: 20px;
 }
+
 .nav-links a {
+    display: block;
+    padding: 12px 22px;
     text-decoration: none;
     color: var(--primary-color);
-    font-weight: 500;
-    transition: color 0.3s;
+    font-weight: 600; /* Bolder for a stronger feel */
+    text-transform: uppercase; /* Feels more architectural */
+    letter-spacing: 1px; /* Adds a precise, drafted look */
+    position: relative; /* Essential for the animated borders */
+    transition: color 0.4s ease;
 }
-.nav-links a:hover, .nav-links a.active {
-    color: var(--accent-color);
+
+/* Add a very subtle, solid background on hover */
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+/* --- The "Blueprint" animated borders --- */
+.nav-links a::before,
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    background-color: var(--secondary-color);
+    transition: transform 0.4s ease-out;
+}
+
+/* Top and Bottom borders */
+.nav-links a::before {
+    height: 2px;
+    width: 100%;
+    left: 0;
+    /* Start the lines off-screen */
+    transform: scaleX(0); 
+}
+/* Top border specific position */
+.nav-links a:nth-child(1)::before { top: 0; }
+/* Bottom border specific position */
+.nav-links a::after { bottom: 0; }
+
+
+/* Left and Right borders */
+.nav-links a::after {
+    width: 2px;
+    height: 100%;
+    top: 0;
+    /* Start the lines off-screen */
+    transform: scaleY(0);
+}
+/* Left border specific position */
+.nav-links a:nth-child(1)::after { left: 0; }
+/* Right border specific position */
+.nav-links a:nth-child(2)::after { right: 0; }
+
+
+/* --- The Hover & Active Effect --- */
+/* Bring the borders into view on hover or when the link is active */
+.nav-links a:hover::before,
+.nav-links a:hover::after,
+.nav-links a.active::before,
+.nav-links a.active::after {
+    transform: scaleX(1) scaleY(1); /* Animate them to full size */
+}
+
+/* When a link is active, make it look permanently "selected" */
+.nav-links a.active {
+    background-color: rgba(26, 60, 90, 0.2); /* <<<< CHANGED */
+    
+    /* Text color uses the new color */
+    color: var(--secondary-color); /* <<<< CHANGED */
 }
 
 /* ------------------- */
@@ -342,7 +411,7 @@ section {
     background: var(--white-color);
     padding: 30px 40px; /* Generous padding inside the cards */
     border-radius: 10px; /* Softer, more modern corners */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07); /* A subtle, professional shadow */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07); /* A subtle, professional shadow */
     flex: 1; /* This makes both cards share the available space equally */
 }
 
