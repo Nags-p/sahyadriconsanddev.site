@@ -252,11 +252,12 @@ section {
 }
 
 /* ------------------- */
-/* Testimonials Section */
+/* Testimonials Section (Swiper) */
 /* ------------------- */
 #testimonials {
     background: var(--secondary-color);
     color: var(--white-color);
+    padding-bottom: 100px; /* Add more space at the bottom */
 }
 #testimonials .section-title, #testimonials h3 {
     color: var(--white-color);
@@ -265,13 +266,37 @@ section {
     background: var(--white-color);
 }
 
+/* This is the main Swiper container */
+.testimonial-swiper {
+    width: 100%;
+    /* This is the magic: allows us to see the slides next to the active one */
+    overflow: visible; 
+}
+
+.swiper-slide {
+    /* Center the card within the slide for better spacing */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .testimonial-card {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     padding: 30px;
     border-radius: 8px;
-    max-width: 800px;
-    margin: 0 auto;
     text-align: center;
+    width: 80%; /* Make card slightly smaller than the slide */
+    max-width: 800px;
+    /* Add a subtle transition for when the slide becomes active */
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: scale(0.9);
+    opacity: 0.5;
+}
+
+/* Style the currently active slide to make it stand out */
+.swiper-slide-active .testimonial-card {
+    transform: scale(1);
+    opacity: 1;
 }
 
 .testimonial-card blockquote {
@@ -279,18 +304,26 @@ section {
     font-style: italic;
     margin-bottom: 20px;
     border: none;
+    min-height: 120px; /* Give a consistent height to the quote area */
 }
-
 .testimonial-author {
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
 }
 .testimonial-author span {
     display: block;
+    font-style: italic;
     font-weight: 400;
     font-size: 0.9rem;
     opacity: 0.8;
 }
+
+/* Style Swiper's default navigation arrows */
+.swiper-button-next, .swiper-button-prev {
+    color: var(--accent-color); /* Use your theme's accent color */
+    top: 50%;
+}
+
 
 /* ------------------- */
 /* Contact Section */

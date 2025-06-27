@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.querySelector('#contact-form');
     const thankYouMessage = document.querySelector('#thank-you-message');
 
-
     // --- 2. MOBILE NAVIGATION LOGIC ---
     if (navToggle && navLinksContainer) {
         navToggle.addEventListener('click', () => {
@@ -106,5 +105,43 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+
+    // --- 5. TESTIMONIAL SLIDER LOGIC ---
+    // Inside the main 'DOMContentLoaded' listener in main.js
+
+// --- 5. SWIPER TESTIMONIAL SLIDER ---
+const swiper = new Swiper('.testimonial-swiper', {
+    // Optional parameters
+    loop: true,             // Makes the slider infinite
+    grabCursor: true,       // Shows a "grab" cursor on hover
+    centeredSlides: true,   // Centers the active slide
+    
+    // How many slides to show. 'auto' works well with our CSS.
+    slidesPerView: 'auto',
+
+    // Space between slides
+    spaceBetween: 20,
+
+    // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+
+    // Responsive breakpoints
+    breakpoints: {
+        // when window width is >= 768px
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 30
+        },
+        // when window width is >= 1024px
+        1024: {
+            slidesPerView: 3,
+            spaceBetween: 40
+        }
+    }
+});
 
 });

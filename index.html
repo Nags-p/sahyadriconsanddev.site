@@ -21,6 +21,9 @@
     <!-- CSS Styles -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- ADD THIS: Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+
     <!-- The new script link with 'defer' -->
     <script src="main.js" defer></script>
         
@@ -125,21 +128,48 @@
             </div>
         </section>
         
-        <!-- ================== TESTIMONIALS SECTION ================== -->
-        <section id="testimonials">
-            <div class="container">
-                <h2 class="section-title">What Our Clients Say</h2>
+        <!-- ================== TESTIMONIALS SECTION (WITH SWIPER) ================== -->
+<section id="testimonials">
+    <div class="container">
+        <h2 class="section-title">What Our Clients Say</h2>
+    </div>
+
+    <!-- Swiper Container -->
+    <div class="swiper testimonial-swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            
+            <!-- Slide 1 (Swiper uses 'swiper-slide' class) -->
+            <div class="swiper-slide">
                 <div class="testimonial-card">
-                    <blockquote>
-                        "Sahyadri Constructions delivered our project on time and with exceptional quality. Their team was professional, transparent, and a pleasure to work with. We couldn't be happier with our new office space!"
-                    </blockquote>
-                    <p class="testimonial-author">
-                        Rohan Sharma
-                        <span>Designation</span>
-                    </p>
+                    <blockquote>"Sahyadri Constructions delivered our project on time and with exceptional quality. Their team was professional, transparent, and a pleasure to work with. We couldn't be happier with our new office space!"</blockquote>
+                    <p class="testimonial-author">Rohan Sharma<span>CEO, Tech Solutions Inc.</span></p>
                 </div>
             </div>
-        </section>
+
+            <!-- Slide 2 -->
+            <div class="swiper-slide">
+                <div class="testimonial-card">
+                    <blockquote>"From the initial design phase to the final handover, the process was seamless. The attention to detail was incredible. I highly recommend them for any residential construction project."</blockquote>
+                    <p class="testimonial-author">Anjali Desai<span>Homeowner, Pune</span></p>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="swiper-slide">
+                <div class="testimonial-card">
+                    <blockquote>"The renovation of our retail space was a huge success... Sahyadri's team understood our vision and executed it perfectly. A truly reliable partner."</blockquote>
+                    <p class="testimonial-author">Vikram Singh<span>Owner, Urban Retailers</span></p>
+                </div>
+            </div>
+
+        </div> <!-- end swiper-wrapper -->
+
+        <!-- Add Navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
 
         <!-- ================== CONTACT SECTION ================== -->
         <section id="contact">
@@ -202,6 +232,8 @@
             </p>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
 </body>
 </html>
