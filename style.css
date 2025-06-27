@@ -472,6 +472,12 @@ section {
     background-color: #f8f8f8;
 }
 
+.contact-map h3 {
+    font-size: 1.8rem;
+}
+
+
+
 /* ------------------- */
 /* Footer */
 /* ------------------- */
@@ -495,6 +501,7 @@ section {
     font-size: 0.9rem;
     opacity: 0.8;
 }
+
 
 
 /* -------------------------- */
