@@ -372,3 +372,89 @@
                 flex-direction: column;
             }
         }
+
+/* style.css */
+
+/* ... keep all your previous CSS from the top ... */
+
+
+/* ------------------- */
+/* Mobile Navigation Styles */
+/* ------------------- */
+
+.mobile-nav-toggle {
+    display: none; /* Hidden by default on desktop */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.sr-only { /* For screen readers, not visible */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+
+/* ------------------- */
+/* Responsive Design */
+/* ------------------- */
+@media (max-width: 768px) {
+    /* Show the hamburger button on mobile */
+    .mobile-nav-toggle {
+        display: block;
+        z-index: 9999; /* Make sure it's on top of everything */
+    }
+
+    /* Style the navigation links for mobile view */
+    .nav-links {
+        position: fixed;
+        inset: 0 0 0 30%; /* Start off the screen to the right */
+        flex-direction: column;
+        padding: min(20vh, 10rem) 2rem;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        transform: translateX(100%);
+        transition: transform 350ms ease-out;
+    }
+    
+    /* This class will be added by JavaScript to show the menu */
+    .nav-links[data-visible="true"] {
+        transform: translateX(0%);
+    }
+
+    .nav-links li {
+        margin: 0;
+    }
+
+    .nav-links a {
+        font-size: 1.25rem;
+        padding: 1rem 0;
+        display: block;
+    }
+
+    /* Change hamburger to a close icon when menu is open */
+    .mobile-nav-toggle[aria-expanded="true"] .fa-bars {
+        display: none;
+    }
+    .mobile-nav-toggle[aria-expanded="false"] .fa-times {
+        display: none;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+    .contact-content {
+        flex-direction: column;
+    }
+}

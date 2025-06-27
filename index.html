@@ -20,6 +20,9 @@
 
     <!-- CSS Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- The new script link with 'defer' -->
+    <script src="main.js" defer></script>
         
 
     </style>
@@ -29,13 +32,11 @@
     <!-- ================== HEADER ================== -->
     <header class="header">
         <div class="container">
-            <!-- EDIT YOUR LOGO HERE -->
             <a href="#hero" class="logo">
-                <img src="images/logo.png" alt="Company Logo">
                 Sahyadri Constructions and Developers
             </a>
             <nav>
-                <ul class="nav-links">
+                <ul class="nav-links" id="nav-links" data-visible="false"> <!-- Set initial state -->
                     <li><a href="#hero" class="active">Home</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#projects">Projects</a></li>
@@ -43,6 +44,11 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <!-- ADD THIS BUTTON FOR MOBILE NAVIGATION -->
+            <button class="mobile-nav-toggle" aria-controls="nav-links" aria-expanded="false">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+                <span class="sr-only">Menu</span>
+            </button>
         </div>
     </header>
 
@@ -173,7 +179,7 @@
         <div class="container">
             <div class="social-links">
                 <!-- Add your social media links here -->
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="d:\Github\construction.site\index.html"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/sahyadri__constructions/"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
