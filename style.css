@@ -426,8 +426,8 @@
     }
     
     /* This class will be added by JavaScript to show the menu */
-    .nav-links[data-visible="true"] {
-        transform: translateX(0%);
+    .nav-links.is-visible {
+    transform: translateX(0%);
     }
 
     .nav-links li {

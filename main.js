@@ -1,24 +1,37 @@
-// This script handles the mobile navigation toggle.
-
-const navLinks = document.querySelector('#nav-links');
+// Select the DOM elements we need to work with
 const navToggle = document.querySelector('.mobile-nav-toggle');
+const navLinksContainer = document.querySelector('#nav-links');
 
+// --- Main Toggle Functionality ---
 navToggle.addEventListener('click', () => {
-    // Check the current state of the navigation menu
-    const isVisible = navLinks.getAttribute('data-visible');
+    // Toggle the .is-visible class on the nav links container
+    navLinksContainer.classList.toggle('is-visible');
 
-    // If the menu is hidden, show it
-    if (isVisible === "false" || isVisible === null) {
-        navLinks.setAttribute('data-visible', true);
-        navToggle.setAttribute('aria-expanded', true);
-        // Change the icon to a close 'X'
+    // Check if the menu is now visible to update aria-expanded
+    const isVisible = navLinksContainer.classList.contains('is-visible');
+    navToggle.setAttribute('aria-expanded', isVisible);
+
+    // Update the icon based on visibility
+    if (isVisible) {
+        // Change icon to 'X' (close)
         navToggle.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i><span class="sr-only">Close menu</span>';
-    } 
-    // If the menu is visible, hide it
-    else {
-        navLinks.setAttribute('data-visible', false);
-        navToggle.setAttribute('aria-expanded', false);
-        // Change the icon back to the hamburger 'bars'
+    } else {
+        // Change icon back to 'bars' (menu)
         navToggle.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i><span class="sr-only">Menu</span>';
     }
+});
+
+
+// --- PRO-TIP: Close menu when a link is clicked ---
+// This is great for single-page applications (like yours)
+const navLinks = document.querySelectorAll('#nav-links a');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        // First, check if the menu is actually open
+        if (navLinksContainer.classList.contains('is-visible')) {
+            // If it's open, simulate a click on the toggle button to close it
+            navToggle.click();
+        }
+    });
 });
