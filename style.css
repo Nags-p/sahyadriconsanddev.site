@@ -341,6 +341,20 @@ section {
     min-height: 120px;
 }
 
+
+.hidden {
+    display: none;
+}
+
+/* Optional: Style the thank you message */
+#thank-you-message {
+    text-align: center;
+    padding: 40px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+}
+
 /* ------------------- */
 /* Footer */
 /* ------------------- */

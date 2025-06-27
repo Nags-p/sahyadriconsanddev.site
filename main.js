@@ -4,6 +4,7 @@
    1. Mobile Navigation Toggle
    2. Closing Mobile Menu on Link Click
    3. Active Navigation Link Highlighting on Scroll
+   4. AJAX Contact Form Submission
    ================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinksContainer = document.querySelector('#nav-links');
     const navLinks = document.querySelectorAll('#nav-links a');
     const sections = document.querySelectorAll('section[id]');
+    const contactForm = document.querySelector('#contact-form');
+    const thankYouMessage = document.querySelector('#thank-you-message');
 
 
     // --- 2. MOBILE NAVIGATION LOGIC ---
@@ -70,5 +73,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Run it once on load to set the initial state
     onScroll();
+
+
+    // --- 4. AJAX CONTACT FORM SUBMISSION ---
+    if (contactForm && thankYouMessage) {
+        contactForm.addEventListener('submit', (event) => {
+            // 1. Prevent the default browser action (which is to navigate away)
+            event.preventDefault();
+
+            // 2. Get the form data
+            const formData = new FormData(contactForm);
+            
+            // 3. Send the data in the background using fetch()
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json' // Tell FormSubmit to reply in a way JS can understand
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // 4. If the submission was successful:
+                    contactForm.style.display = 'none'; // Hide the form
+                    thankYouMessage.classList.remove('hidden'); // Show the thank you message
+                } else {
+                    // If there was a server-side error
+                    alert('Oops! There was a problem submitting your form. Please try again later.');
+                }
+            }).catch(error => {
+                // If there was a network error (e.g., user is offline)
+                alert('Oops! There was a problem with your connection. Please try again.');
+            });
+        });
+    }
 
 });

@@ -159,21 +159,24 @@
                     </div>
                     <div class="contact-form">
                         <form action="https://formsubmit.co/nagarajuraj190@gmail.com" method="POST">
-                            <!-- <input type="hidden" name="_captcha" value="false"> -->
+                            <input type="hidden" name="_captcha" value="false">
                             <input type="hidden" name="_subject" value="New Contact Form Submission">
                             <input type="hidden" name="_template" value="table">
-                            <input type="hidden" name="_autoresponse" value="Thank you for contacting us! We will get back to you soon.">
-                            
         
                             <!-- Optional: Redirect to a 'Thank You' page after submission -->
                             <!-- Create a thankyou.html page and uncomment the line below -->
-                            <input type="hidden" name="_next" value="https://nags-p.github.io/sahyadriconsanddev.site/thankyou.html">
+                            <!-- <input type="hidden" name="_next" value="https://nags-p.github.io/sahyadriconsanddev.site/thankyou.html"> -->
 
                             <input type="text" class="form-group" name="name" placeholder="Your Name" required>
                             <input type="email" class="form-group" name="email" placeholder="Your Email" required>
                             <textarea type="text" class="form-group" name="message" placeholder="Your Message" required></textarea>
                             <button type="submit" class="btn">Send Message</button>
                         </form>
+                        <!-- 2. Add this hidden 'Thank You' message -->
+                            <div id="thank-you-message" class="hidden">
+                                <h3>Thank You!</h3>
+                                <p>Your message has been sent successfully. We will get back to you shortly.</p>
+                            </div>
                     </div>
             </div>
             <div class="contact-map">
