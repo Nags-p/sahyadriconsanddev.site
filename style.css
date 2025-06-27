@@ -117,13 +117,16 @@ section {
 /* ------------------- */
 #hero {
     background: linear-gradient(rgba(26, 60, 90, 0.7), rgba(26, 60, 90, 0.7)), url('images/hero-background.jpg') no-repeat center center/cover;
-    height: 100vh;
     color: var(--white-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-    padding-top: 80px; /* Offset for fixed header */
+
+    /* 
+    THE FIX: 
+    We control the space with padding, not a fixed height.
+    This creates space around your content.
+    The format is: padding: Top Right&Left Bottom;
+    */
+    padding: 140px 20px 70px; 
 }
 
 .hero-content h1 {
