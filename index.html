@@ -158,8 +158,8 @@
                         </ul>
                     </div>
                     <div class="contact-form">
-                        <form>
-                            <form action="https://formsubmit.co/nagarajuraj190@gmail.com" method="POST">
+                        <form action="https://formsubmit.co/nagarajuraj190@gmail.com" method="POST">
+                            <input type="hidden" name="_captcha" value="false">
 
                             <!-- This is a security feature to prevent spam. Keep it! -->
                             <!--<input type="hidden" name="_captcha" value="false" required>-->
@@ -168,22 +168,10 @@
                             <!-- Create a thankyou.html page and uncomment the line below -->
                             <!-- <input type="hidden" name="_next" value="https://nags-p.github.io/sahyadriconsanddev.site/thankyou.html"> -->
 
-                            <div class="form-group">
-                                <input type="text" name="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" name="email" placeholder="Your Email" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea input="text" name="message" placeholder="Your Message" required></textarea>
-                            </div>
+                            <input type="text" class="form-group" name="name" placeholder="Your Name" required>
+                            <input type="email" class="form-group" name="email" placeholder="Your Email" required>
+                            <textarea type="text" class="form-group" name="message" placeholder="Your Message" required></textarea>
                             <button type="submit" class="btn">Send Message</button>
-                        </form>
-                        <form action="https://formsubmit.co/nagarajuraj190@gmail.com" method="POST">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="text" name="name" required>
-                            <input type="email" name="email" required>
-                            <button type="submit">Send</button>
                         </form>
                     </div>
             </div>
