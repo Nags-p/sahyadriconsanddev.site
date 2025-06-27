@@ -325,53 +325,137 @@ section {
 }
 
 
-/* ------------------- */
-/* Contact Section */
-/* ------------------- */
-#contact {
-    background: var(--light-gray);
-}
+/* ================================================= */
+/*   Final Contact Section - Dual Card Layout        */
+/* ================================================= */
+
+/* --- 1. The Main Two-Column Container --- */
 .contact-content {
     display: flex;
-    gap: 50px;
-}
-.contact-info, .contact-form {
-    flex: 1;
-}
-.contact-info h3 {
-    margin-bottom: 20px;
-}
-.contact-info p {
-    margin-bottom: 20px;
-}
-.contact-info ul {
-    list-style: none;
-}
-.contact-info li {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-}
-.contact-info i {
-    color: var(--accent-color);
-    font-size: 1.2rem;
-    margin-right: 15px;
-    width: 20px;
+    gap: 30px; /* The space BETWEEN the two main cards */
+    align-items: stretch; /* Makes both cards the same height */
 }
 
+/* --- 2. The Shared "Card" Style --- */
+/* This style applies to BOTH the info block and the form block */
+.contact-card {
+    background: var(--white-color);
+    padding: 30px 40px; /* Generous padding inside the cards */
+    border-radius: 10px; /* Softer, more modern corners */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07); /* A subtle, professional shadow */
+    flex: 1; /* This makes both cards share the available space equally */
+}
+
+/* --- 3. Styles for INSIDE the LEFT card --- */
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* The list of contact items now has a clean, bordered look */
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: center;
+    padding: 15px 0; /* Just top and bottom padding */
+    border-bottom: 1px solid #f0f0f0; /* Very subtle separator line */
+}
+
+/* Remove the line from the last item for a clean finish */
+.contact-info li:last-child {
+    border-bottom: none;
+}
+
+.contact-info li i {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-right: 20px;
+    width: 25px; /* Give icons a consistent space */
+}
+
+.contact-info li a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.contact-info li a:hover {
+    color: var(--accent-color);
+}
+
+
+/* --- The Form's Title --- */
+.contact-form h3 {
+    font-size: 1.8rem;
+    margin-bottom: 25px; /* More space below the title */
+    color: var(--primary-color);
+}
+
+
+/* --- Base Style for Input Fields --- */
+.contact-form input, 
+.contact-form textarea {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    
+    width: 100%;
+    padding: 15px; /* A more comfortable padding */
+    
+    background-color: #e4e4e4; /* A very light, soft gray background */
+    border: 1px solid transparent; /* Start with an invisible border */
+    border-radius: 8px; /* Softer corners */
+
+    /* Smooth transition for the focus effect */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* --- Style for the Placeholder Text --- */
+.contact-form ::placeholder {
+    color: #a0a0a0;
+}
+
+
+/* --- The "Focus" Effect --- */
+/* This is the magic: happens when you click into a field */
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    outline: none; /* Remove the default browser outline */
+    border-color: var(--accent-color); /* Add a border with your theme's color */
+    
+    /* Add a subtle "glow" effect */
+    box-shadow: 0 0 0 4px rgba(243, 156, 18, 0.2); 
+}
+
+
+/* --- Specific style for the message box --- */
+.contact-form textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+
+/* --- The Form Grouping Div --- */
 .contact-form .form-group {
     margin-bottom: 20px;
 }
-.contact-form input, .contact-form textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: 'Roboto', sans-serif;
-}
-.contact-form textarea {
-    resize: vertical;
-    min-height: 120px;
+
+
+/* --- The "Send Message" Button --- */
+.contact-form .btn {
+    width: 100%; /* Make the button full-width */
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase; /* A professional touch */
+    letter-spacing: 1px;
 }
 
 
@@ -439,6 +523,40 @@ section {
     border: 0;
 }
 
+/* =================================== */
+/* Floating Action Buttons             */
+/* =================================== */
+
+/* --- 1. Shared Styles for ALL buttons --- */
+.float-btn {
+    position: fixed; 
+    right: 25px; /* Common horizontal position */
+    z-index: 1100; 
+    transition: transform 0.3s ease;
+}
+
+.float-btn:hover {
+    transform: scale(1.1); /* Slightly enlarges the button on hover */
+}
+
+.float-btn img {
+    /* Desktop size */
+    width: 60px;
+    height: 60px;
+    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    transition: width 0.3s ease, height 0.3s ease; /* Animate size changes */
+}
+
+
+/* --- 2. Specific Vertical Positions --- */
+.whatsapp-float-btn {
+    bottom: 25px;
+}
+.call-float-btn {
+    bottom: 100px; /* (25px for whatsapp) + (60px height) + (15px gap) */
+}
 
 /* =================================== */
 /* Responsive Design / Mobile View     */
@@ -495,51 +613,7 @@ section {
     }
     .contact-content {
         flex-direction: column;
-        gap: 30px;
     }
-}
-
-/* in style.css */
-
-/* =================================== */
-/* Floating Action Buttons             */
-/* =================================== */
-
-/* --- 1. Shared Styles for ALL buttons --- */
-.float-btn {
-    position: fixed; 
-    right: 25px; /* Common horizontal position */
-    z-index: 1100; 
-    transition: transform 0.3s ease;
-}
-
-.float-btn:hover {
-    transform: scale(1.1); /* Slightly enlarges the button on hover */
-}
-
-.float-btn img {
-    /* Desktop size */
-    width: 60px;
-    height: 60px;
-    
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
-    transition: width 0.3s ease, height 0.3s ease; /* Animate size changes */
-}
-
-
-/* --- 2. Specific Vertical Positions --- */
-.whatsapp-float-btn {
-    bottom: 25px;
-}
-.call-float-btn {
-    bottom: 100px; /* (25px for whatsapp) + (60px height) + (15px gap) */
-}
-
-
-/* --- 3. Responsive Styles for Mobile --- */
-@media (max-width: 768px) {
-    
     /* Make the icons smaller on mobile */
     .float-btn img {
         width: 50px;
