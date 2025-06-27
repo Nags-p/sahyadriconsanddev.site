@@ -498,3 +498,39 @@ section {
         gap: 30px;
     }
 }
+
+/* in style.css */
+
+/* =================================== */
+/* Floating WhatsApp Button Styles     */
+/* =================================== */
+.whatsapp-float-btn {
+    /* This is the key to making it float */
+    position: fixed; 
+
+    /* Positioning it in the bottom right corner */
+    bottom: 25px;
+    right: 25px;
+
+    /* Making sure it's on top of all other content */
+    z-index: 1100; 
+
+    /* Adding a subtle hover effect */
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float-btn:hover {
+    transform: scale(1); /* Slightly enlarges the button on hover */
+}
+
+.whatsapp-float-btn img {
+    /* Set the size of the icon */
+    width: 60px;
+    height: 60px;
+    
+    /* Optional: Add a subtle shadow to make it "pop" off the page */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    
+    /* Make the shadow respect the circular shape */
+    border-radius: 50%;
+}
