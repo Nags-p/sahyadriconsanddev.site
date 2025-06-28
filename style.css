@@ -115,7 +115,7 @@ section {
     padding: 12px 22px;
     text-decoration: none;
     color: var(--primary-color);
-    font-weight: 600; /* Bolder for a stronger feel */
+    font-weight: 500; /* Bolder for a stronger feel */
     text-transform: uppercase; /* Feels more architectural */
     letter-spacing: 1px; /* Adds a precise, drafted look */
     position: relative; /* Essential for the animated borders */
