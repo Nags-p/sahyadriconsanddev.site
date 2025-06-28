@@ -175,7 +175,7 @@ section {
 
 /* When a link is active, make it look permanently "selected" */
 .nav-links a.active {
-    background-color: rgba(26, 60, 90, 0.2); /* <<<< CHANGED */
+    background-color: rgba(26, 60, 90, 0.1); /* <<<< CHANGED */
     
     /* Text color uses the new color */
     color: var(--secondary-color); /* <<<< CHANGED */
