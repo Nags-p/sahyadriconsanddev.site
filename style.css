@@ -71,9 +71,11 @@ section {
     padding: 15px 0;
     position: fixed;
     width: 100%;
+    bottom: 640px;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease; /* <-- ADD THIS LINE */
 }
 
 .header .container {
@@ -81,6 +83,13 @@ section {
     justify-content: space-between;
     align-items: center;
 }
+/* Inside the @media (max-width: 768px) block */
+
+/* This new rule makes the header transparent when the menu is open 
+.header.menu-open {
+    background-color: transparent;
+    box-shadow: none; /* Also hide the shadow for a cleaner look 
+} */
 
 .logo {
     font-size: 1.5rem;
