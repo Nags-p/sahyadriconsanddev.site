@@ -829,3 +829,17 @@ section {
         bottom: 75px; /* (15px for whatsapp) + (50px height) + (10px gap) */
     }
 }
+
+/* --- Hide Number Input Arrows --- */
+
+/* For Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
