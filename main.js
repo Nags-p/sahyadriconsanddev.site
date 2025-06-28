@@ -1,18 +1,16 @@
 /* ==================================================
    SAHYADRI CONSTRUCTIONS - MAIN JAVASCRIPT FILE
    Handles:
-   1. Mobile Navigation Toggle (Updated for Header Transparency)
+   1. Mobile Navigation Toggle
    2. Closing Mobile Menu on Link Click
    3. Active Navigation Link Highlighting on Scroll
    4. AJAX Contact Form Submission
-   5. Testimonial Slider Logic
    ================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. ELEMENT SELECTIONS ---
     // We select all the elements we need right at the beginning for efficiency.
-    const header = document.querySelector('.header'); // <-- ADDED THIS LINE
     const navToggle = document.querySelector('.mobile-nav-toggle');
     const navLinksContainer = document.querySelector('#nav-links');
     const navLinks = document.querySelectorAll('#nav-links a');
@@ -20,57 +18,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.querySelector('#contact-form');
     const thankYouMessage = document.querySelector('#thank-you-message');
 
-
-    // ===================================================================
-    // --- 2. MOBILE NAVIGATION LOGIC (REVISED FOR HEADER TRANSPARENCY) ---
-    // ===================================================================
-
-    // Function to cleanly CLOSE the mobile menu
-    const closeMobileMenu = () => {
-        if (navLinksContainer.classList.contains('is-visible')) {
-            header.classList.remove('menu-open'); // <-- MODIFIED: Removes class from header
-            navLinksContainer.classList.remove('is-visible');
-            navToggle.setAttribute('aria-expanded', 'false');
-            navToggle.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i><span class="sr-only">Menu</span>';
-        }
-    };
-
-    // Function to cleanly OPEN the mobile menu
-    const openMobileMenu = () => {
-        header.classList.add('menu-open'); // <-- MODIFIED: Adds class to header
-        navLinksContainer.classList.add('is-visible');
-        navToggle.setAttribute('aria-expanded', 'true');
-        navToggle.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i><span class="sr-only">Close menu</span>';
-    };
-
-    // Main event listener for the hamburger/close button
+    // --- 2. MOBILE NAVIGATION LOGIC ---
     if (navToggle && navLinksContainer) {
         navToggle.addEventListener('click', () => {
+            // Toggle the .is-visible class on the navigation menu
+            navLinksContainer.classList.toggle('is-visible');
+
+            // Check if the menu is now visible to update the accessibility attribute
             const isVisible = navLinksContainer.classList.contains('is-visible');
+            navToggle.setAttribute('aria-expanded', isVisible);
+
+            // Update the menu icon (hamburger or 'X')
             if (isVisible) {
-                closeMobileMenu();
+                navToggle.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i><span class="sr-only">Close menu</span>';
             } else {
-                openMobileMenu();
+                navToggle.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i><span class="sr-only">Menu</span>';
             }
         });
     }
 
-    // Close the mobile menu automatically when a link inside it is clicked
+    // Close the mobile menu automatically when a link is clicked
     if (navLinks.length > 0) {
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                closeMobileMenu();
+                if (navLinksContainer.classList.contains('is-visible')) {
+                    navToggle.click(); // Simulate a click on the toggle to close it
+                }
             });
         });
     }
 
-    // ===================================================================
-    // --- END OF REVISED NAVIGATION LOGIC ---
-    // ===================================================================
-
 
     // --- 3. ACTIVE LINK ON SCROLL (SCROLLSPY) LOGIC ---
-    // This feature is UNCHANGED.
     const onScroll = () => {
         const scrollPosition = window.scrollY + 150; // Add an offset to highlight a bit earlier
 
@@ -96,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- 4. AJAX CONTACT FORM SUBMISSION ---
-    // This feature is UNCHANGED.
     if (contactForm && thankYouMessage) {
         contactForm.addEventListener('submit', (event) => {
             // 1. Prevent the default browser action (which is to navigate away)
@@ -130,41 +108,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- 5. TESTIMONIAL SLIDER LOGIC ---
-    // This feature is UNCHANGED.
-    // Ensure you have Swiper.js library included in your HTML for this to work
-    if (typeof Swiper !== 'undefined') {
-        const swiper = new Swiper('.testimonial-swiper', {
-            // Optional parameters
-            loop: true,             // Makes the slider infinite
-            grabCursor: true,       // Shows a "grab" cursor on hover
-            centeredSlides: true,   // Centers the active slide
-            
-            // How many slides to show. 'auto' works well with our CSS.
-            slidesPerView: 'auto',
+    // Inside the main 'DOMContentLoaded' listener in main.js
 
-            // Space between slides
-            spaceBetween: 20,
+// --- 5. SWIPER TESTIMONIAL SLIDER ---
+const swiper = new Swiper('.testimonial-swiper', {
+    // Optional parameters
+    loop: true,             // Makes the slider infinite
+    grabCursor: true,       // Shows a "grab" cursor on hover
+    centeredSlides: true,   // Centers the active slide
+    
+    // How many slides to show. 'auto' works well with our CSS.
+    slidesPerView: 'auto',
 
-            // Navigation arrows
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+    // Space between slides
+    spaceBetween: 20,
 
-            // Responsive breakpoints
-            breakpoints: {
-                // when window width is >= 768px
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 30
-                },
-                // when window width is >= 1024px
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 40
-                }
-            }
-        });
+    // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+
+    // Responsive breakpoints
+    breakpoints: {
+        // when window width is >= 768px
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 30
+        },
+        // when window width is >= 1024px
+        1024: {
+            slidesPerView: 3,
+            spaceBetween: 40
+        }
     }
+});
 
 });
