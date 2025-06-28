@@ -71,7 +71,6 @@ section {
     padding: 15px 0;
     position: fixed;
     width: 100%;
-    bottom: auto; /* <-- CHANGED */
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
