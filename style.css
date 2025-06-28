@@ -195,7 +195,7 @@ section {
     This creates space around your content.
     The format is: padding: Top Right&Left Bottom;
     */
-    padding: 140px 20px 70px; 
+    padding: 180px 20px 70px; 
 }
 
 .hero-content h1 {
@@ -780,7 +780,7 @@ section {
 
     .nav-links a {
         font-size: 1.25rem;
-        font-weight: 600; /* Make links bolder on mobile */
+        font-weight: 500; /* Make links bolder on mobile */
     }
 
     /* Inside the @media block */
