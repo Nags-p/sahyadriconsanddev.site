@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Close the mobile menu automatically when a link is clicked
-    /*if (navLinks.length > 0) {
+    if (navLinks.length > 0) {
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (navLinksContainer.classList.contains('is-visible')) {
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-    }*/
+    }
 
 
     // --- 3. ACTIVE LINK ON SCROLL (SCROLLSPY) LOGIC ---
