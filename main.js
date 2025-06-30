@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 1. ELEMENT SELECTIONS ---
     // We select all the elements we need right at the beginning for efficiency.
     const navToggle = document.querySelector('.mobile-nav-toggle');
+    const header = document.querySelector('.header'); // Assuming you have a header element with this class
     const navLinksContainer = document.querySelector('#nav-links');
     const navLinks = document.querySelectorAll('#nav-links a');
     const sections = document.querySelectorAll('section[id]');
@@ -37,8 +38,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+    // --- HEADER SCROLL EFFECT ---
+    // This feature requires the .header selection from your Element Selections block.
+    if (header) {
+        const handleScroll = () => {
+        // Check if the user has scrolled more than 100px from the top
+            if (window.scrollY > 420) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        };
+
+    // Listen for scroll events on the window
+        window.addEventListener('scroll', handleScroll);
+    
+    // Run the function once on load in case the page is reloaded halfway down
+        handleScroll();
+    }
+
     // Close the mobile menu automatically when a link is clicked
-    if (navLinks.length > 0) {
+    /*if (navLinks.length > 0) {
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (navLinksContainer.classList.contains('is-visible')) {
@@ -46,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-    }
+    }*/
 
 
     // --- 3. ACTIVE LINK ON SCROLL (SCROLLSPY) LOGIC ---
