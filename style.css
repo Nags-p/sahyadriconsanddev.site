@@ -81,7 +81,7 @@ section {
 .header {
     /* background: var(--white-color); */ /* REMOVE OR COMMENT OUT THIS LINE */
     background: rgba(26, 60, 90, 0.5);  /* ADD: Semi-transparent version of your primary color */
-    backdrop-filter: blur(5px);         /* ADD: Nice glass effect */
+    backdrop-filter: blur(5px);         
     
     padding: 15px 0;
     position: fixed;
@@ -89,7 +89,7 @@ section {
     top: 0;
     z-index: 1000;
     
-    /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */ /* REMOVE THIS */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* REMOVE THIS */
     border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* ADD: Subtle separator */
     
     transition: background-color 0.4s ease, box-shadow 0.4s ease; /* Update the transition */
@@ -807,23 +807,24 @@ section {
 
     /* --- Style the Mobile Menu Panel --- */
     /* --- Style the Mobile Menu Panel --- */
+
+
 .nav-links {
     position: fixed;
-    /* Position it top-right, taking up 70% of the screen width */
-    inset: 0 0 0 30%;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    inset: 100% 0 0 40%;
 
-    /* Change layout to vertical */
+    display: flex;
     flex-direction: column;
-    padding: min(20vh, 10rem) 2rem;
-    gap: 1.5rem; /* Add some space between links */
+    padding: min(2vh, 10rem) 2rem;
+    gap: 1.5rem;
 
-    /* Visual styling */
-    background: var(--white-color); /* Changed for better contrast */
-    backdrop-filter: blur(15px);          /* Increased blur for readability */
-    -webkit-backdrop-filter: blur(15px);  /* For Safari support */
+    background-color: #ffffff; /* Pure white background */
+    z-index: 9999; /* Ensure it's above everything */
 
-
-    /* HIDE the menu by default by pushing it off-screen */
     transform: translateX(100%);
     transition: transform 350ms ease-out;
 }
@@ -842,6 +843,9 @@ section {
     font-weight: 500;
     color: var(--secondary-color); /* Slightly transparent for non-active links */
 }
+
+
+
 
 /* 
   THIS IS THE NEW RULE THAT FIXES YOUR ISSUE
