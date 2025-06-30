@@ -81,7 +81,8 @@ section {
 .header {
     /* background: var(--white-color); */ /* REMOVE OR COMMENT OUT THIS LINE */
     background: rgba(26, 60, 90, 0.5);  /* ADD: Semi-transparent version of your primary color */
-    backdrop-filter: blur(5px);         
+    backdrop-filter: blur(5px);  
+    width: 100%;       
     
     padding: 15px 0;
     position: fixed;
@@ -129,7 +130,8 @@ section {
 
 .nav-links {
     list-style: none;
-    display: flex;
+    display: flex; 
+    width: 100%;
 }
 
 .nav-links li {
@@ -137,7 +139,7 @@ section {
 }
 
 .nav-links a {
-    display: block;
+    display: flex;
     padding: 12px 22px;
     text-decoration: none;
     color: var(--white-color);
