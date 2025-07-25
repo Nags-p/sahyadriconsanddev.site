@@ -690,6 +690,15 @@ section {
     letter-spacing: 1px;
 }
 
+/* Styling for the consent notice text */
+.consent-text {
+    font-size: 0.8rem; /* Smaller font size */
+    color: #777;      /* Muted grey color */
+    line-height: 1.5;
+    text-align: center;
+    margin: 2px 0 20px 0; /* Adjust spacing around the text */
+}
+
 
 .hidden {
     display: none;
