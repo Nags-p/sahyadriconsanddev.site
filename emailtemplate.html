@@ -1,0 +1,49 @@
+  const htmlBody = `
+    <html>
+      <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin-top: 20px; margin-bottom: 20px;">
+          
+          <!-- Header with Logo -->
+          <tr>
+            <td align="center" style="padding: 20px 0; background-color: #ffffff;">
+              <img src="https://nags-p.github.io/sahyadriconsanddev.site/images/logo.png" alt="Sahyadri Constructions Logo" width="200" style="display: block;" />
+            </td>
+          </tr>
+
+          <!-- Main Content Body -->
+          <tr>
+            <td style="padding: 40px 30px; background-color: #ffffff;">
+              <h1 style="color: #1a3c5a; margin-top: 0;">Thank You for Your Submission!</h1>
+              <p style="color: #333333; line-height: 1.6;">Hi ${recipientName},</p>
+              <p style="color: #333333; line-height: 1.6;">We have successfully received your message and our team will get back to you within 1-2 business days. For your reference, here is a copy of the details you submitted:</p>
+              
+              <!-- Submission Details Box -->
+              <table border="0" cellpadding="10" cellspacing="0" width="100%" style="margin-top: 20px; background-color: #f9f9f9; border-left: 5px solid #f39c12;">
+                <tr>
+                  <td style="color: #333333;">
+                    <p style="margin: 5px 0;"><strong>Name:</strong> ${recipientName}</p>
+                    <p style="margin: 5px 0;"><strong>Email:</strong> ${recipientEmail}</p>
+                    <p style="margin: 5px 0;"><strong>Phone:</strong> ${recipientPhone}</p>
+                    <p style="margin: 5px 0;"><strong>Message:</strong><br>${recipientMessage}</p>
+                  </td>
+                </tr>
+              </table>
+              
+              <p style="color: #333333; line-height: 1.6; margin-top: 30px;">We appreciate your interest in our services and look forward to discussing your vision.</p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td align="center" style="padding: 20px 30px; background-color: #1a3c5a;">
+              <p style="margin: 0; color: #ffffff; font-size: 14px;">
+                © ${new Date().getFullYear()} Sahyadri Constructions and Developers. All Rights Reserved.<br>
+                <a href="https://nags-p.github.io/sahyadriconsanddev.site/" style="color: #f39c12; text-decoration: none;">Visit our Website</a>
+              </p>
+            </td>
+          </tr>
+          
+        </table>
+      </body>
+    </html>
+  `;
