@@ -69,7 +69,6 @@ const htmlBody = `
             </table>
           </td>
         </tr>
-        // --- This is the start of the footer section in your script ---
 
         <!-- Footer -->
         <tr>
@@ -136,4 +135,63 @@ const htmlBody = `
     </body>
     </html>
   `;
+
+
+    // ===================================================================
+  // --- 4. SEND NOTIFICATION EMAIL TO OWNER (NEW SECTION) ---
+  // ===================================================================
+
+  // The subject line now includes the name for quick identification in your inbox.
+  const ownerSubject = `New Website Inquiry from: ${recipientName}`;
+
+  // This new body uses a table for a clean, professional layout.
+  const ownerBody = `
+    <html>
+      <body style="font-family: Arial, sans-serif; color: #333;">
+        <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd;">
+          <h2 style="color: #1a3c5a;">New Website Inquiry</h2>
+          <p>You have received a new submission from the contact form on your website.</p>
+          
+          <table border="0" cellpadding="10" cellspacing="0" width="100%" style="border-collapse: collapse; margin-top: 20px;">
+            
+            <tr style="background-color: #f9f9f9;">
+              <td style="padding: 12px; font-weight: bold; border: 1px solid #ddd; width: 120px;">Name:</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">${recipientName}</td>
+            </tr>
+            
+            <tr>
+              <td style="padding: 12px; font-weight: bold; border: 1px solid #ddd;">Email:</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">
+                <a href="mailto:${recipientEmail}">${recipientEmail}</a>
+              </td>
+            </tr>
+            
+            <tr style="background-color: #f9f9f9;">
+              <td style="padding: 12px; font-weight: bold; border: 1px solid #ddd;">Phone:</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">
+                <a href="tel:${recipientPhone}" >${recipientPhone}</a>
+              </td>
+            </tr>
+            
+            <tr>
+              <td style="padding: 12px; font-weight: bold; border: 1px solid #ddd; vertical-align: top;">Message:</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">${recipientMessage}</td>
+            </tr>
+
+          </table>
+
+          <p style="font-size: 12px; color: #777; margin-top: 20px;">
+            Note: A confirmation email has already been sent to the respondent.
+          </p>
+        </div>
+      </body>
+    </html>
   `;
+
+  // This part stays the same
+  MailApp.sendEmail({
+    to: ownerEmail,
+    subject: ownerSubject,
+    htmlBody: ownerBody,
+    name: 'Website Form Notification' 
+  });
