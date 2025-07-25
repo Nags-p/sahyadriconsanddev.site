@@ -134,7 +134,7 @@ if (contactForm && thankYouMessage) {
         event.preventDefault();
 
         // 2. The URL from your Google Form's 'action' attribute
-        const googleFormUrl = 'https://webhook.site/2800f85a-0d73-4bd1-bd2e-14d1b151ae12'; // PASTE YOUR URL HERE 
+        const googleFormUrl = 'https://forms.gle/surkdrbxW6u3ypvC7'; // PASTE YOUR URL HERE 
 
         // 3. Get the form data
         const formData = new FormData(contactForm);
