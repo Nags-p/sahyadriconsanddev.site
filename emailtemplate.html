@@ -1,244 +1,4 @@
-  const htmlBody = `
-    <html>
-      <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin-top: 20px; margin-bottom: 20px;">
-          
-          <!-- Header with Logo -->
-          <tr>
-            <td align="center" style="padding: 20px 0; background-color: #ffffff;">
-              <img src="https://nags-p.github.io/sahyadriconsanddev.site/images/logo.png" alt="Sahyadri Constructions Logo" width="200" style="display: block;" />
-            </td>
-          </tr>
-
-          <!-- Main Content Body -->
-          <tr>
-            <td style="padding: 40px 30px; background-color: #ffffff;">
-              <h1 style="color: #1a3c5a; margin-top: 0;">Thank You for Your Submission!</h1>
-              <p style="color: #333333; line-height: 1.6;">Hi ${recipientName},</p>
-              <p style="color: #333333; line-height: 1.6;">We have successfully received your message and our team will get back to you within 1-2 business days. For your reference, here is a copy of the details you submitted:</p>
-              
-              <!-- Submission Details Box -->
-              <table border="0" cellpadding="10" cellspacing="0" width="100%" style="margin-top: 20px; background-color: #f9f9f9; border-left: 5px solid #f39c12;">
-                <tr>
-                  <td style="color: #333333;">
-                    <p style="margin: 5px 0;"><strong>Name:</strong> ${recipientName}</p>
-                    <p style="margin: 5px 0;"><strong>Email:</strong> ${recipientEmail}</p>
-                    <p style="margin: 5px 0;"><strong>Phone:</strong> ${recipientPhone}</p>
-                    <p style="margin: 5px 0;"><strong>Message:</strong><br>${recipientMessage}</p>
-                  </td>
-                </tr>
-              </table>
-              
-              <p style="color: #333333; line-height: 1.6; margin-top: 30px;">We appreciate your interest in our services and look forward to discussing your vision.</p>
-            </td>
-          </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td align="center" style="padding: 20px 30px; background-color: #1a3c5a;">
-              <p style="margin: 0; color: #ffffff; font-size: 14px;">
-                © ${new Date().getFullYear()} Sahyadri Constructions and Developers. All Rights Reserved.<br>
-                <a href="https://nags-p.github.io/sahyadriconsanddev.site/" style="color: #f39c12; text-decoration: none;">Visit our Website</a>
-              </p>
-            </td>
-          </tr>
-          
-        </table>
-      </body>
-    </html>
-  `;
-
-
-    const htmlBody = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Thank You for Your Submission</title>
-    </head>
-    <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #e9ebee;">
-
-      <!-- Pre-header for email preview pane -->
-      <div style="display: none; max-height: 0; overflow: hidden;">
-        Thank you for contacting us! We've received your submission.
-      </div>
-
-      <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-        
-        <!-- Company Header with Logo -->
-        <tr>
-          <td align="center" style="padding: 25px 10px; background-color: #1a3c5a;">
-            <!-- IMPORTANT: REPLACE with your logo's public URL -->
-            <img src="https://nags-p.github.io/sahyadriconsanddev.site/images/logo.png" alt="Sahyadri Constructions Logo" width="180" style="display: block;" />
-          </td>
-        </tr>
-
-        <!-- Main Content Card -->
-        <tr>
-          <td style="padding: 40px 30px; background-color: #ffffff; border-radius: 0 0 5px 5px;">
-            <h1 style="color: #1a3c5a; margin-top: 0; font-size: 24px;">Your Submission Has Been Received</h1>
-            <p style="color: #333333; line-height: 1.6; font-size: 16px;">Hi ${recipientName},</p>
-            <p style="color: #333333; line-height: 1.6; font-size: 16px;">Thank you for your interest in Sahyadri Constructions. We are reviewing your message and will be in touch within 1-2 business days.</p>
-            
-            <!-- Submission Details Box -->
-            <table border="0" cellpadding="15" cellspacing="0" width="100%" style="margin-top: 25px; margin-bottom: 25px; background-color: #f8f8f8; border: 1px solid #eeeeee;">
-              <tr>
-                <td style="color: #333333; font-size: 15px;">
-                  <p style="margin: 5px 0;"><strong>Name:</strong> ${recipientName}</p>
-                  <p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:${recipientEmail}" style="color: #1a3c5a;">${recipientEmail}</a></p>
-                  <p style="margin: 5px 0;"><strong>Phone:</strong> ${recipientPhone}</p>
-                  <p style="margin: 5px 0;"><strong>Message:</strong><br>${recipientMessage}</p>
-                </td>
-              </tr>
-            </table>
-
-            <!-- Call to Action Button -->
-            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-              <tr>
-                <td align="center" style="padding: 20px 0;">
-                  <a href="https://nags-p.github.io/sahyadriconsanddev.site/#projects" target="_blank" style="background-color: #f39c12; color: #ffffff; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
-                    See Our Projects
-                  </a>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-        <!-- Footer -->
-        <tr>
-          <td align="center" style="padding: 30px;">
-            <p style="margin: 0; color: #666666; font-size: 12px; line-height: 1.8;">
-              <strong>Sahyadri Constructions and Developers</strong><br>
-              <!-- IMPORTANT: Replace with your actual address -->
-              2nd Main Road, Near Archana Hospital, Ashok Nagar, Mangalore, Karnataka - 571401
-            </p>
-            <p style="margin-top: 15px; color: #666666; font-size: 12px;">
-              <!-- IMPORTANT: Replace # with your social media links -->
-              <a href="#" style="color: #1a3c5a; text-decoration: none;">Facebook</a>  | 
-              <a href="#" style="color: #1a3c5a; text-decoration: none;">Instagram</a>  | 
-              <a href="#" style="color: #1a3c5a; text-decoration: none;">LinkedIn</a>
-            </p>
-            <p style="margin-top: 15px; color: #666666; font-size: 12px;">
-              © ${new Date().getFullYear()} All Rights Reserved.
-            </p>
-          </td>
-        </tr>
-        
-      </table>
-    </body>
-    </html>
-  `;
-
-    const htmlBody = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Thank You for Contacting Sahyadri Constructions</title>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-      </style>
-    </head>
-    <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f7f7f7;">
-
-      <!-- Pre-header for email preview pane -->
-      <div style="display: none; max-height: 0; overflow: hidden;">
-        We've received your submission and will be in touch shortly.
-      </div>
-
-      <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 20px auto;">
-        
-        <!-- Hero Image Section -->
-        <tr>
-          <td>
-            <!-- IMPORTANT: REPLACE with your hero image's public URL -->
-            <a href="https://nags-p.github.io/sahyadriconsanddev.site/#projects" target="_blank">
-              <img src="https://nags-p.github.io/sahyadriconsanddev.site/images/project1.jpg" alt="A signature construction project" width="600" style="display: block; width: 100%; max-width: 600px; border-radius: 8px 8px 0 0;" />
-            </a>
-          </td>
-        </tr>
-
-        <!-- Main Content Card -->
-        <tr>
-          <td style="padding: 40px 40px 30px 40px; background-color: #ffffff; border-radius: 0 0 8px 8px;">
-            
-            <!-- Logo Section -->
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 30px;">
-              <tr>
-                <td align="left">
-                  <!-- IMPORTANT: REPLACE with your logo's public URL -->
-                  <img src="https://nags-p.github.io/sahyadriconsanddev.site/images/logo.png" alt="Sahyadri Constructions Logo" width="160" style="display: block;" />
-                </td>
-              </tr>
-            </table>
-
-            <h1 style="color: #1a3c5a; margin-top: 0; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; letter-spacing: -0.5px;">Your message has been received.</h1>
-            <p style="color: #444444; line-height: 1.7; font-size: 16px;">Hi ${recipientName},</p>
-            <p style="color: #444444; line-height: 1.7; font-size: 16px;">Thank you for your interest in Sahyadri Constructions. This email is to confirm we have received your submission. Our team will review your message and get back to you within 1-2 business days.</p>
-            
-            <!-- Divider -->
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 30px 0;">
-              <tr><td style="border-bottom: 1px solid #eeeeee;"></td></tr>
-            </table>
-
-            <!-- Submission Details Box -->
-            <p style="color: #1a3c5a; font-weight: bold; font-size: 16px;">Your Submission Details:</p>
-            <div style="color: #444444; font-size: 15px; line-height: 1.8;">
-              <strong>Name:</strong> ${recipientName}<br>
-              <strong>Email:</strong> ${recipientEmail}<br>
-              <strong>Phone:</strong> ${recipientPhone}<br>
-              <strong>Message:</strong> ${recipientMessage}
-            </div>
-
-            <!-- Divider -->
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 30px 0;">
-              <tr><td style="border-bottom: 1px solid #eeeeee;"></td></tr>
-            </table>
-
-            <p style="color: #444444; line-height: 1.7; font-size: 16px;">In the meantime, feel free to explore our portfolio of completed projects.</p>
-
-            <!-- Call to Action Button -->
-            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-              <tr>
-                <td align="center" style="padding: 10px 0;">
-                  <a href="https://nags-p.github.io/sahyadriconsanddev.site/#projects" target="_blank" style="background-color: #f39c12; color: #ffffff; padding: 15px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; display: inline-block; font-size: 14px;">
-                    VIEW OUR WORK
-                  </a>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-        <!-- Footer -->
-        <tr>
-          <td align="center" style="padding: 30px 20px;">
-            <!-- Social Media Icons -->
-            <p>
-              <a href="#" target="_blank" style="text-decoration: none;"><img src="https://i.imgur.com/your-facebook-icon.png" width="32" alt="Facebook"></a>  
-              <a href="#" target="_blank" style="text-decoration: none;"><img src="https://i.imgur.com/your-instagram-icon.png" width="32" alt="Instagram"></a>  
-              <a href="#" target="_blank" style="text-decoration: none;"><img src="https://i.imgur.com/your-linkedin-icon.png" width="32" alt="LinkedIn"></a>
-            </p>
-            <p style="margin: 10px 0 0 0; color: #888888; font-size: 12px; line-height: 1.8;">
-              <strong>Sahyadri Constructions and Developers</strong><br>
-              2nd Main Road, Near Archana Hospital, Ashok Nagar, Mangalore, Karnataka - 571401
-            </p>
-            <p style="margin-top: 10px; color: #888888; font-size: 12px;">
-              © ${new Date().getFullYear()} All Rights Reserved.
-            </p>
-          </td>
-        </tr>
-        
-      </table>
-    </body>
-    </html>
-  `;
-
-
-    const htmlBody = `
+const htmlBody = `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -318,22 +78,45 @@
             <!-- Social Media Icons Table -->
             <table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 20px;">
               <tr>
-                <!-- Facebook Icon -->
+
+                <!-- Phone Icon -->
                 <td style="padding: 0 12px;">
-                  <a href="#" target="_blank"> <!-- IMPORTANT: Replace # with your Facebook URL -->
-                    <img src="https://nags-p.github.io/sahyadriconsanddev.site/images/email/facebook.png" width="32" alt="Facebook" style="display: block; border: 0;">
+                  <a href="tel:+917975676745" target="_blank"> <!-- IMPORTANT: Replace # with your Instagram URL -->
+                    <img src="https://nags-p.github.io/sahyadriconsanddev.site/images/email/phone.png" width="32" alt="Instagram" style="display: block; border: 0;">
                   </a>
                 </td>
+
+                <!-- WhatsApp Icon -->
+                <td style="padding: 0 12px;">
+                  <a href="https://wa.me/+917975676745?/" target="_blank"> <!-- IMPORTANT: Replace # with your Instagram URL -->
+                    <img src="https://nags-p.github.io/sahyadriconsanddev.site/images/email/whatsapp.png" width="32" alt="Instagram" style="display: block; border: 0;">
+                  </a>
+                </td>
+
                 <!-- Instagram Icon -->
                 <td style="padding: 0 12px;">
-                  <a href="#" target="_blank"> <!-- IMPORTANT: Replace # with your Instagram URL -->
+                  <a href="https://www.instagram.com/sahyadri__constructions/" target="_blank"> <!-- IMPORTANT: Replace # with your Instagram URL -->
                     <img src="https://nags-p.github.io/sahyadriconsanddev.site/images/email/instagram.png" width="32" alt="Instagram" style="display: block; border: 0;">
                   </a>
                 </td>
+
+                <!-- Facebook Icon -->
+                <td style="padding: 0 12px;">
+                  <a href="https://www.facebook.com/profile.php?id=100064091681228" target="_blank"> <!-- IMPORTANT: Replace # with your Facebook URL -->
+                    <img src="https://nags-p.github.io/sahyadriconsanddev.site/images/email/facebook.png" width="32" alt="Facebook" style="display: block; border: 0;">
+                  </a>
+                </td>
+                
                 <!-- Email Icon -->
                 <td style="padding: 0 12px;">
                   <a href="mailto:sahyadriconstructions449@gmail.com"> <!-- IMPORTANT: Replace with your email -->
                     <img src="https://nags-p.github.io/sahyadriconsanddev.site/images/email/email.png" width="32" alt="Email Us" style="display: block; border: 0;">
+                  </a>
+                </td>
+                <!-- Web Icon -->
+                <td style="padding: 0 12px;">
+                  <a href="https://nags-p.github.io/sahyadriconsanddev.site/"> <!-- IMPORTANT: Replace with your email -->
+                    <img src="https://nags-p.github.io/sahyadriconsanddev.site/images/email/web.png" width="32" alt="Email Us" style="display: block; border: 0;">
                   </a>
                 </td>
               </tr>
