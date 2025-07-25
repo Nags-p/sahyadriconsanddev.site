@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     onScroll();
 
 
-    // --- 4. AJAX CONTACT FORM SUBMISSION ---
+    /* --- 4. AJAX CONTACT FORM SUBMISSION ---
     if (contactForm && thankYouMessage) {
         contactForm.addEventListener('submit', (event) => {
             // 1. Prevent the default browser action (which is to navigate away)
@@ -125,7 +125,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Oops! There was a problem with your connection. Please try again.');
             });
         });
-    }
+    } */
+
+    // --- 4. AJAX GOOGLE FORM SUBMISSION ---
+if (contactForm && thankYouMessage) {
+    contactForm.addEventListener('submit', (event) => {
+        // 1. Prevent the default browser action
+        event.preventDefault();
+
+        // 2. The URL from your Google Form's 'action' attribute
+        const googleFormUrl = 'https://webhook.site/2800f85a-0d73-4bd1-bd2e-14d1b151ae12'; // PASTE YOUR URL HERE 
+
+        // 3. Get the form data
+        const formData = new FormData(contactForm);
+        
+        // 4. Send the data silently in the background using fetch()
+        fetch(googleFormUrl, {
+            method: 'POST',
+            body: formData,
+            //mode: 'no-cors' // IMPORTANT: This is the magic that makes it work!
+        }).then(() => {
+            // 5. This part runs immediately after sending.
+            // Because of 'no-cors', we can't know if it was successful,
+            // but for Google Forms, it's extremely reliable.
+            contactForm.style.display = 'none'; // Hide the form
+            thankYouMessage.classList.remove('hidden'); // Show the thank you message
+        }).catch(error => {
+            // This will likely only catch network errors, not form errors
+            alert('Oops! There was a network problem. Please try again.');
+        });
+    });
+}
 
 
     // --- 5. TESTIMONIAL SLIDER LOGIC ---

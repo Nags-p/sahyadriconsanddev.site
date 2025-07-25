@@ -236,24 +236,34 @@
                     <div class="contact-form contact-card">
                         <h3>Let's Build Your Vision</h3>
                         <p style="margin-bottom: 10px;">Every great landmark begins with an idea. Share the details of your project with us, and let's discuss how we can bring your vision to life.</p>
-                        <!-- 1. Add this form with FormSubmit -->
-                        <form id="contact-form" action="https://formsubmit.co/nagarajuraj190@gmail.com" method="POST">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_subject" value="New Contact Form Submission">
-                            <input type="hidden" name="_template" value="table">
-        
-                            <!-- Optional: Redirect to a 'Thank You' page after submission -->
-                            <!-- Create a thankyou.html page and uncomment the line below -->
-                            <!-- <input type="hidden" name="_next" value="https://nags-p.github.io/sahyadriconsanddev.site/thankyou.html"> -->
+                        <!-- 1. Add this form with FormSubmit 
+                        <form id="contact-form">
 
-                            <input type="text" class="form-group" name="name" placeholder="Your Name" required>
-                            <input type="number" class="form-group" name="Contact Number" placeholder="Your Contact Number" inputmode="tel" required>
-                            <input type="email" class="form-group" name="email" placeholder="Your Email" required>
+                            <input type="text" class="form-group" name="entry.602030415" placeholder="Your Name" required>
+                            <input type="number" class="form-group" name="entry.73268696" placeholder="Your Contact Number" inputmode="tel" required>
+                            <input type="email" class="form-group" name="entry.1908780249" placeholder="Your Email" required>
 
                             
-                            <textarea type="text" class="form-group" name="message" placeholder="Your Message" required></textarea>
+                            <textarea type="text" class="form-group" name="entry.396304883" placeholder="Your Message" required></textarea>
                             <button type="submit" class="btn">Send Message</button>
-                        </form>
+                        </form>-->
+                        <!-- In index.html, your contact form -->
+<form id="contact-form"> <!-- Removed the action attribute -->
+    <div class="form-group">
+        <input type="text" name="entry.602030415" placeholder="Your Name" required>
+    </div>
+    
+    <div class="form-group">
+        <input type="text" inputmode="numeric" name="entry.73268696" placeholder="Your Contact Number" required>
+    </div>
+    <div class="form-group">
+        <input type="email" name="entry.1908780249" placeholder="Your Email" required>
+    </div>
+    <div class="form-group">
+        <textarea name="entry.396304883" placeholder="Your Message" required></textarea>
+    </div>
+    <button type="submit" class="btn">Send Message</button>
+</form>
                         <!-- 2. Add this hidden 'Thank You' message -->
                             <div id="thank-you-message" class="hidden">
                                 <h3>Thank You!</h3>
