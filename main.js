@@ -132,6 +132,7 @@ if (contactForm && thankYouMessage) {
     contactForm.addEventListener('submit', (event) => {
         // 1. Prevent the default browser action
         event.preventDefault();
+        
 
         // 2. The URL from your Google Form's 'action' attribute
         const googleFormUrl = 'https://forms.gle/surkdrbxW6u3ypvC7'; // PASTE YOUR URL HERE 
