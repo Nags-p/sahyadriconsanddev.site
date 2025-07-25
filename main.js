@@ -128,33 +128,17 @@ document.addEventListener('DOMContentLoaded', () => {
     } */
 
     // --- 4. AJAX GOOGLE FORM SUBMISSION ---
+    // --- 4. AJAX GOOGLE FORM SUBMISSION (Bulletproof iframe Method) ---
 if (contactForm && thankYouMessage) {
-    contactForm.addEventListener('submit', (event) => {
-        // 1. Prevent the default browser action
-        event.preventDefault();
-        
+    contactForm.addEventListener('submit', () => {
+        // We DON'T use event.preventDefault() here.
+        // We WANT the form to submit to the iframe.
 
-        // 2. The URL from your Google Form's 'action' attribute
-        const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfzu15h3Ds_9m7PpA1_jjs9xbj1WvEZ0cVMLdFkE-MnbFn4Yg/viewform?usp=header'; // PASTE YOUR URL HERE 
-
-        // 3. Get the form data
-        const formData = new FormData(contactForm);
-        
-        // 4. Send the data silently in the background using fetch()
-        fetch(googleFormUrl, {
-            method: 'POST',
-            body: formData,
-            mode: 'no-cors' // IMPORTANT: This is the magic that makes it work!
-        }).then(() => {
-            // 5. This part runs immediately after sending.
-            // Because of 'no-cors', we can't know if it was successful,
-            // but for Google Forms, it's extremely reliable.
+        // We wait a tiny moment for the submission to begin...
+        setTimeout(() => {
             contactForm.style.display = 'none'; // Hide the form
             thankYouMessage.classList.remove('hidden'); // Show the thank you message
-        }).catch(error => {
-            // This will likely only catch network errors, not form errors
-            alert('Oops! There was a network problem. Please try again.');
-        });
+        }, 100); // 100 milliseconds
     });
 }
 
