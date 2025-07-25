@@ -143,7 +143,7 @@ if (contactForm && thankYouMessage) {
         fetch(googleFormUrl, {
             method: 'POST',
             body: formData,
-            //mode: 'no-cors' // IMPORTANT: This is the magic that makes it work!
+            mode: 'no-cors' // IMPORTANT: This is the magic that makes it work!
         }).then(() => {
             // 5. This part runs immediately after sending.
             // Because of 'no-cors', we can't know if it was successful,
