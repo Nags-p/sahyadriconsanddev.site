@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.querySelector('#contact-form');
     const thankYouMessage = document.querySelector('#thank-you-message');
     const projectTitleElement = document.getElementById('project-title');
+    const backToTopBtn = document.querySelector('#back-to-top-btn');
 
     // --- 2. MOBILE NAVIGATION LOGIC ---
     if (navToggle && navLinksContainer) {
@@ -201,6 +202,21 @@ if (contactForm && thankYouMessage) {
             document.querySelector('.project-detail-section').innerHTML = '<p style="text-align:center;">Sorry, we could not find the project you were looking for.</p>';
         }
     }
+
+    // --- BACK TO TOP BUTTON LOGIC ---
+if (backToTopBtn) {
+    const toggleVisibility = () => {
+        // If the user has scrolled down more than 300 pixels
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    };
+
+    // Listen for scroll events on the window
+    window.addEventListener('scroll', toggleVisibility);
+}
 
 
     // --- 5. TESTIMONIAL SLIDER LOGIC ---

@@ -1186,3 +1186,55 @@ input[type=number] {
         padding-right: 50px;
     }
 }
+
+
+/* --------------------------------- */
+/* Back to Top Button (Corrected)    */
+/* --------------------------------- */
+.back-to-top-btn {
+    /* --- Positioning --- */
+    position: fixed;   /* This makes it float relative to the browser window */
+    bottom: 25px;      /* 25px from the bottom */
+    right: 25px;       /* THIS IS THE KEY: 25px from the RIGHT */
+    z-index: 999;
+
+    /* --- Appearance --- */
+    width: 45px;
+    height: 45px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    
+    /* --- Icon Centering --- */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* --- Link & Animation --- */
+    font-size: 1.2rem;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* This class is added by JavaScript to show the button */
+.back-to-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+    background-color: var(--accent-color);
+}
+
+/* On smaller screens, we can adjust the position slightly */
+@media (max-width: 768px) {
+    .back-to-top-btn {
+        bottom: 20px;
+        right: 20px;
+    }
+}
