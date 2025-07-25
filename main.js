@@ -129,16 +129,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 4. AJAX GOOGLE FORM SUBMISSION ---
     // --- 4. AJAX GOOGLE FORM SUBMISSION (Bulletproof iframe Method) ---
+// --- 4. GOOGLE FORM SUBMISSION (Final iframe Method) ---
 if (contactForm && thankYouMessage) {
-    contactForm.addEventListener('submit', () => {
-        // We DON'T use event.preventDefault() here.
-        // We WANT the form to submit to the iframe.
+    // Select the iframe by its ID
+    const hiddenIframe = document.querySelector('#hidden_iframe');
+    let formSubmitted = false; // A flag to ensure we only run this once
 
-        // We wait a tiny moment for the submission to begin...
-        setTimeout(() => {
-            contactForm.style.display = 'none'; // Hide the form
-            thankYouMessage.classList.remove('hidden'); // Show the thank you message
-        }, 100); // 100 milliseconds
+    // This function shows the thank you message
+    const showThankYouMessage = () => {
+        if (formSubmitted) {
+            contactForm.style.display = 'none';
+            thankYouMessage.classList.remove('hidden');
+        }
+    };
+
+    // Listen for the iframe to finish loading
+    // This happens AFTER Google's server responds
+    if (hiddenIframe) {
+        hiddenIframe.addEventListener('load', showThankYouMessage);
+    }
+
+    // When the form is submitted, we set our flag to true
+    contactForm.addEventListener('submit', () => {
+        formSubmitted = true;
+        // We do NOT prevent the default action. The form submits normally.
     });
 }
 

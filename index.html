@@ -239,14 +239,15 @@
                         <!-- 1. Add this form with FormSubmit -->
                         <!-- PASTE THIS ENTIRE CORRECTED FORM INTO YOUR index.html -->
                          <!-- REPLACE your existing <form> tag with this one -->
+<!-- In index.html -->
+
+<!-- THE FORM: Note the 'target' attribute -->
 <form 
     id="contact-form" 
     target="hidden_iframe" 
     action="https://docs.google.com/forms/d/e/1FAIpQLSfzu15h3Ds_9m7PpA1_jjs9xbj1WvEZ0cVMLdFkE-MnbFn4Yg/formResponse"
 >
-    <!-- All your input fields go inside here. They remain unchanged. -->
-    <!-- Make sure their 'name' attributes are still the correct entry.xxxxx -->
-
+    <!-- All your input fields here... they are correct -->
     <div class="form-group">
         <input type="text" name="entry.602030415" placeholder="Your Name" required>
     </div>
@@ -259,9 +260,11 @@
     <div class="form-group">
         <textarea name="entry.396304883" placeholder="Your Message" required></textarea>
     </div>
-
     <button type="submit" class="btn">Send Message</button>
 </form>
+
+<!-- THE IFRAME: Note the 'name' attribute must match the target above -->
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
                         <!-- In index.html, your contact form -->
 <!-- <form id="contact-form"> 
     <div class="form-group">
