@@ -135,7 +135,7 @@ if (contactForm && thankYouMessage) {
         
 
         // 2. The URL from your Google Form's 'action' attribute
-        const googleFormUrl = 'https://forms.gle/surkdrbxW6u3ypvC7'; // PASTE YOUR URL HERE 
+        const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfzu15h3Ds_9m7PpA1_jjs9xbj1WvEZ0cVMLdFkE-MnbFn4Yg/viewform?usp=header'; // PASTE YOUR URL HERE 
 
         // 3. Get the form data
         const formData = new FormData(contactForm);
