@@ -746,6 +746,43 @@ section {
     margin-bottom: 20px;
 }
 
+/* Styling for the new Service Dropdown */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Custom arrow for the dropdown */
+.select-wrapper::after {
+    content: '\f078'; /* Font Awesome down-chevron icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Allows clicks to go through to the select box */
+    color: var(--primary-color);
+}
+
+.contact-form select {
+    /* Reset browser appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Match other form fields */
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: var(--white-color);
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
 
 /* --- The "Send Message" Button --- */
 .contact-form .btn {
@@ -1050,6 +1087,22 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
