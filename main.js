@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section[id]');
     const contactForm = document.querySelector('#contact-form');
     const thankYouMessage = document.querySelector('#thank-you-message');
+    const projectTitleElement = document.getElementById('project-title');
 
     // --- 2. MOBILE NAVIGATION LOGIC ---
     if (navToggle && navLinksContainer) {
@@ -155,6 +156,51 @@ if (contactForm && thankYouMessage) {
         // We do NOT prevent the default action. The form submits normally.
     });
 }
+
+
+    // --- DYNAMIC PROJECT PAGE LOADER ---
+    // This code block only runs if it finds an element with the ID 'project-title',
+    // meaning it will only execute on our new project-page.html
+    if (projectTitleElement) {
+        
+        // 1. Get the project ID from the URL (e.g., "?id=1")
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = parseInt(urlParams.get('id')); // Convert the ID to a number
+
+        // 2. Find the correct project data from our "database"
+        const project = projectsData.find(p => p.id === projectId);
+
+        // 3. Populate the page with the project data
+        if (project) {
+            // Set the page title
+            document.title = `Project: ${project.title} - Sahyadri Constructions`;
+
+            // Fill in the text content
+            projectTitleElement.textContent = project.title;
+            document.getElementById('project-subtitle').textContent = project.subtitle;
+            document.getElementById('project-vision').textContent = project.vision;
+            document.getElementById('project-solution').textContent = project.solution;
+            document.getElementById('project-client').textContent = project.client;
+            document.getElementById('project-location').textContent = project.location;
+            document.getElementById('project-year').textContent = project.year;
+            document.getElementById('project-type').textContent = project.type;
+            document.getElementById('project-scope').textContent = project.scope;
+
+            // Create and add the gallery images
+            const gallery = document.getElementById('project-gallery');
+            gallery.innerHTML = ''; // Clear any existing content
+            project.galleryImages.forEach(imageUrl => {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = `Image of ${project.title}`;
+                gallery.appendChild(img);
+            });
+        } else {
+            // If no project is found for the ID, show an error message
+            projectTitleElement.textContent = 'Project Not Found';
+            document.querySelector('.project-detail-section').innerHTML = '<p style="text-align:center;">Sorry, we could not find the project you were looking for.</p>';
+        }
+    }
 
 
     // --- 5. TESTIMONIAL SLIDER LOGIC ---
