@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. ELEMENT SELECTIONS ---
     // We select all the elements we need right at the beginning for efficiency.
+    // MASTER WEBSITE VARIABLE
+    const companyName = "Sahyadri Constructions and Developers";    
     const navToggle = document.querySelector('.mobile-nav-toggle');
     const header = document.querySelector('.header'); // Assuming you have a header element with this class
     const navLinksContainer = document.querySelector('#nav-links');
@@ -20,6 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const thankYouMessage = document.querySelector('#thank-you-message');
     const projectTitleElement = document.getElementById('project-title');
     const backToTopBtn = document.querySelector('#back-to-top-btn');
+
+    // --- NEW: DYNAMIC COMPANY NAME LOADER ---
+    // This finds all elements with the 'company-name' class and updates them.
+    const companyNameElements = document.querySelectorAll('.company-name');
+    companyNameElements.forEach(element => {
+        element.textContent = companyName;
+    });
 
     // --- 2. MOBILE NAVIGATION LOGIC ---
     if (navToggle && navLinksContainer) {
@@ -72,14 +81,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // --- 3. ACTIVE LINK ON SCROLL (SCROLLSPY) LOGIC ---
+       // --- 3. ACTIVE LINK ON SCROLL (SCROLLSPY) AND DYNAMIC TITLE ---
     const onScroll = () => {
         const scrollPosition = window.scrollY + 150; // Add an offset to highlight a bit earlier
+        let activeSectionFound = false; // Flag to check if we are in a section
+
+        // This is a small helper function to format section IDs into nice titles
+        const formatTitle = (id) => {
+            // Capitalize the first letter and replace hyphens with spaces
+            const text = id.replace(/-/g, ' ');
+            return text.charAt(0).toUpperCase() + text.slice(1);
+        };
 
         sections.forEach(section => {
+            // This is your original logic for finding the active section
             if (scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
                 const currentSectionId = '#' + section.getAttribute('id');
+                const sectionId = section.getAttribute('id');
 
+                // --- NEW: This block updates the document title ---
+                if (sectionId === 'hero') {
+                    // If we are in the hero section, use the default company name
+                    document.title = companyName;
+                } else {
+                    // Otherwise, use the formatted section name
+                    document.title = `${formatTitle(sectionId)} - ${companyName}`;
+                }
+                activeSectionFound = true;
+                // --- End of new block ---
+
+                // This is your original logic for highlighting the navigation link
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === currentSectionId) {
@@ -88,6 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+
+        // --- NEW: If we scroll above all sections, reset to default title ---
+        if (!activeSectionFound && window.scrollY < 300) {
+            document.title = companyName;
+        }
+        // --- End of new block ---
     };
 
     // Listen for scroll events to run the onScroll function
@@ -95,6 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Run it once on load to set the initial state
     onScroll();
+
+
+
+
 
     // --- 4. AJAX GOOGLE FORM SUBMISSION ---
     // --- 4. AJAX GOOGLE FORM SUBMISSION (Bulletproof iframe Method) ---
