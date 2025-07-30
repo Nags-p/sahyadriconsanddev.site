@@ -16,10 +16,18 @@
         .button-group { display: flex; gap: 10px; margin-top: 25px; }
         button { flex-grow: 1; padding: 12px; color: white; border: none; border-radius: 5px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.2s; }
         button:disabled { background-color: #ccc; cursor: not-allowed; }
+        
+        /* CORRECTED BUTTON STYLES */
+        .btn-primary { background-color: #8D6E63; }
+        .btn-primary:hover:not(:disabled) { background-color: #795548; }
+        .btn-secondary { background-color: #607D8B; }
+        .btn-secondary:hover:not(:disabled) { background-color: #546E7A; }
+        .btn-info { background-color: #03A9F4; }
+        .btn-info:hover:not(:disabled) { background-color: #0288D1; }
+
         #dashboard-section { display: none; }
         .status-message { text-align: center; margin-top: 15px; font-size: 14px; font-weight: 600; padding: 10px; border-radius: 5px; display: none; word-break: break-word; }
-        .status-message.success { color: #2e6b2e; background-color: #dff0d8; }
-        .status-message.error { color: #a94442; background-color: #f2dede; }
+        .status-message.success { color: #2e6b2e; background-color: #dff0d8; } .status-message.error { color: #a94442; background-color: #f2dede; }
         .loader { text-align: center; margin-top: 15px; font-weight: 600; color: #555; display: none; }
         .segment-container { border: 1px solid #ddd; border-radius: 5px; padding: 15px; max-height: 120px; overflow-y: auto; background-color: #fafafa; }
         .checkbox-item { display: block; position: relative; padding-left: 30px; margin-bottom: 10px; cursor: pointer; user-select: none; }
@@ -30,28 +38,20 @@
         .checkbox-item input:checked ~ .checkmark { background-color: #8D6E63; }
         .checkmark:after { content: ""; position: absolute; display: none; left: 7px; top: 3px; width: 5px; height: 10px; border: solid white; border-width: 0 3px 3px 0; transform: rotate(45deg); }
         .checkbox-item input:checked ~ .checkmark:after { display: block; }
-        #btn-send-campaign { background-color: #8D6E63; }
-        #btn-send-campaign:hover:not(:disabled) { background-color: #795548; }
-        #btn-send-test { background-color: #607D8B; }
-        #btn-send-test:hover:not(:disabled) { background-color: #546E7A; }
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1>Promotions Dashboard</h1>
-
-        <!-- Login Section -->
         <div id="login-section">
             <form id="login-form">
                 <label for="password">Enter Password</label>
                 <input type="password" id="password" required>
-                <div class="button-group" style="margin-top:10px;"><button type="submit">Login</button></div>
+                <!-- CORRECTED LOGIN BUTTON with a primary style -->
+                <div class="button-group" style="margin-top:10px;"><button type="submit" class="btn-primary">Login</button></div>
                 <div id="login-status" class="status-message"></div>
             </form>
         </div>
-
-        <!-- Dashboard Section -->
         <div id="dashboard-section">
             <form id="campaign-form">
                 <h2>1. Compose Your Email</h2>
@@ -67,34 +67,33 @@
                 <input type="text" id="c-cta-text" value="Learn More" required>
                 <label for="c-cta-link">Button Link (URL)</label>
                 <input type="url" id="c-cta-link" placeholder="https://your-website.com/project" required>
-
+                
                 <h2>2. Select Segments to Target</h2>
-                <div id="segment-container" class="segment-container">
-                    <!-- Segment checkboxes will be inserted here -->
-                </div>
+                <div id="segment-container" class="segment-container"></div>
 
                 <div class="button-group">
-                    <button type="button" id="btn-send-test">Send Test</button>
-                    <button type="submit" id="btn-send-campaign">Send Campaign</button>
+                    <button type="button" id="btn-preview" class="btn-info">Preview</button>
+                    <button type="button" id="btn-send-test" class="btn-secondary">Send Test</button>
+                    <button type="submit" id="btn-send-campaign" class="btn-primary">Send Campaign</button>
                 </div>
                 <div class="loader" id="campaign-loader"></div>
                 <div id="campaign-status" class="status-message"></div>
             </form>
         </div>
     </div>
-
 <script>
-    // --- CONFIGURATION ---
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztocQ8b1iBQRTsSF1_ERZnMbTY84sNGtv3VHweclBhObBTmVTUbAKRTvRwxlekyZOT/exec';
-
-    // --- DOM ELEMENTS ---
+    let masterTemplateHtml = ''; // This will store the template for instant previews
+    
+    // --- DOM Elements ---
     const loginSection = document.getElementById('login-section'), dashboardSection = document.getElementById('dashboard-section'),
           loginForm = document.getElementById('login-form'), campaignForm = document.getElementById('campaign-form'),
           loginStatus = document.getElementById('login-status'), campaignStatus = document.getElementById('campaign-status'),
           campaignLoader = document.getElementById('campaign-loader'), segmentContainer = document.getElementById('segment-container'),
-          btnSendTest = document.getElementById('btn-send-test'), btnSendCampaign = document.getElementById('btn-send-campaign');
+          btnPreview = document.getElementById('btn-preview'), btnSendTest = document.getElementById('btn-send-test'),
+          btnSendCampaign = document.getElementById('btn-send-campaign');
 
-    // --- API CALLER ---
+    // --- API Caller & Loading State ---
     function callApi(action, payload, callback) {
         setLoading(true);
         const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
@@ -106,13 +105,15 @@
     }
     
     function setLoading(isLoading) {
+        btnPreview.disabled = isLoading;
         btnSendTest.disabled = isLoading;
         btnSendCampaign.disabled = isLoading;
+        campaignLoader.style.display = isLoading ? 'block' : 'none';
     }
 
-    // --- UI POPULATION ---
+    // --- UI Population & Helpers ---
     function populateCheckboxes(segments = []) {
-        segmentContainer.innerHTML = ''; // Clear
+        segmentContainer.innerHTML = '';
         createCheckbox('All', 'All Customers', true);
         if (segments.length > 0) { segments.forEach(segment => createCheckbox(segment, segment)); }
         segmentContainer.addEventListener('change', handleSegmentChange);
@@ -126,7 +127,6 @@
         segmentContainer.appendChild(label);
     }
 
-    // --- EVENT HANDLERS ---
     function handleSegmentChange(e) {
         const allCheckbox = segmentContainer.querySelector('input[value="All"]');
         const otherCheckboxes = Array.from(segmentContainer.querySelectorAll('input:not([value="All"])'));
@@ -153,16 +153,24 @@
         };
     }
 
+    // --- Event Listeners ---
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
         loginStatus.style.display = 'none';
+        campaignLoader.textContent = 'Logging in...';
         callApi('checkPassword', { password: password.value }, function(response) {
             if (response.success) {
                 loginSection.style.display = 'none';
                 dashboardSection.style.display = 'block';
-                // On login, we only need to fetch the segments now
-                callApi('getSegments', {}, function(data) {
-                    populateCheckboxes(data.segments);
+                campaignLoader.textContent = 'Fetching dashboard data...';
+                // Fetch segments and master template on successful login
+                callApi('getDashboardData', {}, function(data) {
+                    if (data.success) {
+                        masterTemplateHtml = data.templateHtml; // Store the template
+                        populateCheckboxes(data.segments);
+                    } else {
+                        alert('Error fetching dashboard data: ' + (data.message || 'Unknown error'));
+                    }
                 });
             } else {
                 loginStatus.textContent = 'Incorrect password.';
@@ -172,18 +180,33 @@
         });
     });
 
-    btnSendTest.addEventListener('click', function() {
+    btnPreview.addEventListener('click', function() {
         if (!campaignForm.checkValidity()) {
+            alert('Please fill out all email content fields to generate a preview.');
             campaignForm.reportValidity();
-            alert('Please fill out all email content fields before sending a test.');
             return;
         }
+        if (!masterTemplateHtml) { alert('Master template has not loaded yet. Please wait a moment.'); return; }
+        const campaignData = getCampaignData();
+        const composedHtml = masterTemplateHtml
+            .replace(/{{headline}}/g, campaignData.headline)
+            .replace(/{{image_url}}/g, campaignData.image_url)
+            .replace(/{{body_text}}/g, campaignData.body_text.replace(/\n/g, '<br>'))
+            .replace(/{{cta_text}}/g, campaignData.cta_text)
+            .replace(/{{cta_link}}/g, campaignData.cta_link)
+            .replace(/{{unsubscribe_link_text}}/g, 'This is a preview. The unsubscribe link will be active in real emails.');
+        
+        const previewWindow = window.open('', '_blank');
+        previewWindow.document.write(composedHtml);
+        previewWindow.document.close();
+    });
+
+    btnSendTest.addEventListener('click', function() {
+        if (!campaignForm.checkValidity()) { campaignForm.reportValidity(); alert('Please fill out all email content fields.'); return; }
         const campaignData = getCampaignData();
         campaignStatus.style.display = 'none';
         campaignLoader.textContent = 'Sending test email...';
-        campaignLoader.style.display = 'block';
         callApi('sendTest', { campaignData: campaignData }, function(response) {
-            campaignLoader.style.display = 'none';
             campaignStatus.textContent = response.message;
             campaignStatus.className = response.success ? 'status-message success' : 'status-message error';
             campaignStatus.style.display = 'block';
@@ -194,16 +217,12 @@
         e.preventDefault();
         const selectedSegments = getSelectedSegments();
         if (selectedSegments.length === 0) { alert('Please select at least one segment to target.'); return; }
-        
         const campaignData = getCampaignData();
         const segmentText = selectedSegments.includes('All') ? "All Customers" : `${selectedSegments.length} segment(s)`;
         if (!confirm(`Are you sure you want to send this campaign to ${segmentText}?`)) return;
-        
         campaignStatus.style.display = 'none';
         campaignLoader.textContent = 'Sending campaign... This may take a while.';
-        campaignLoader.style.display = 'block';
         callApi('runCampaign', { campaignData: campaignData, segments: selectedSegments }, function(response) {
-            campaignLoader.style.display = 'none';
             campaignStatus.textContent = response.message;
             campaignStatus.className = response.success ? 'status-message success' : 'status-message error';
             campaignStatus.style.display = 'block';
