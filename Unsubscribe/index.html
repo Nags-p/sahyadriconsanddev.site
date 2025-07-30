@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unsubscribing...</title>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; url=YOUR_GOOGLE_SCRIPT_URL_HERE">
+  <script type="text/javascript">
+    // This script will extract the email from the current URL
+    // and append it to the Google Script URL before redirecting.
+    
+    // --- PASTE YOUR FULL GOOGLE SCRIPT URL HERE ---
+    const googleScriptUrl = "https://script.google.com/macros/s/AKfycbztocQ8b1iBQRTsSF1_ERZnMbTY84sNGtv3VHweclBhObBTmVTUbAKRTvRwxlekyZOT/exec";
+    
+    // Get the query parameters from the current window's URL
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email');
+
+    // Construct the final destination URL
+    let destinationUrl = googleScriptUrl;
+    if (email) {
+      destinationUrl += "?email=" + encodeURIComponent(email);
+    }
+
+    // Redirect the user immediately
+    window.location.replace(destinationUrl);
+  </script>
+</head>
+<body>
+  <p>If you are not redirected automatically, <a id="redirect-link" href="#">click here</a>.</p>
+  <script type="text/javascript">
+    // Also update the fallback link's href for non-JS users
+    document.getElementById('redirect-link').href = window.location.replace(destinationUrl);
+  </script>
+</body>
+</html>
