@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahyadri Promotions Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #f9f9f9; display: flex; justify-content: center; align-items: center; min-height: 90vh; }
+        .container { background: #fff; padding: 30px 40px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
+        h1 { text-align: center; color: #333; margin-bottom: 30px; }
+        label { font-weight: 600; font-size: 14px; color: #555; display: block; margin-bottom: 8px; }
+        input[type="password"], select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #8D6E63; color: white; border: none; border-radius: 5px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.2s; margin-top: 20px; }
+        button:hover { background-color: #795548; }
+        #dashboard-section { display: none; }
+        .status-message { text-align: center; margin-top: 15px; font-size: 14px; font-weight: 600; padding: 10px; border-radius: 5px; display: none; }
+        .status-message.success { color: #2e6b2e; background-color: #dff0d8; }
+        .status-message.error { color: #a94442; background-color: #f2dede; }
+        .loader { text-align: center; margin-top: 15px; font-weight: 600; color: #555; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Promotions Dashboard</h1>
+
+        <!-- Login Section -->
+        <div id="login-section">
+            <form id="login-form">
+                <label for="password">Enter Password</label>
+                <input type="password" id="password" required>
+                <button type="submit">Login</button>
+                <div id="login-status" class="status-message"></div>
+            </form>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard-section">
+            <form id="campaign-form">
+                <label for="template">Select Email Template</label>
+                <select id="template" name="template" required>
+                    <option value="" disabled selected>Choose a template...</option>
+                    <option value="luxe_template.html">Luxe Confirmation Template</option>
+                    <option value="festive_promo.html">Festive Promo Template</option>
+                    <!-- Add more templates from your GitHub repo as needed -->
+                </select>
+                <button type="submit">Send Campaign</button>
+                <div class="loader" id="campaign-loader">Sending... Please wait.</div>
+                <div id="campaign-status" class="status-message"></div>
+            </form>
+        </div>
+    </div>
+
+<script>
+    // --- CONFIGURATION ---
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztocQ8b1iBQRTsSF1_ERZnMbTY84sNGtv3VHweclBhObBTmVTUbAKRTvRwxlekyZOT/exec';
+
+    // --- DOM Elements ---
+    const loginSection = document.getElementById('login-section');
+    const dashboardSection = document.getElementById('dashboard-section');
+    const loginForm = document.getElementById('login-form');
+    const campaignForm = document.getElementById('campaign-form');
+    const loginStatus = document.getElementById('login-status');
+    const campaignStatus = document.getElementById('campaign-status');
+    const campaignLoader = document.getElementById('campaign-loader');
+
+    // --- Generic JSONP API Caller ---
+    function callApi(action, payload, callback) {
+        // Create a unique callback function name to avoid conflicts
+        const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+        
+        // Make the callback function available globally
+        window[callbackName] = function(data) {
+            callback(data);
+            // Clean up after the call
+            document.body.removeChild(document.getElementById(callbackName));
+            delete window[callbackName];
+        };
+
+        const scriptTag = document.createElement('script');
+        scriptTag.id = callbackName;
+        scriptTag.src = `${SCRIPT_URL}?action=${action}&payload=${encodeURIComponent(JSON.stringify(payload))}&callback=${callbackName}`;
+        
+        // Handle network errors
+        scriptTag.onerror = () => {
+             callback({success: false, message: "Network Error: Failed to contact the API."});
+        };
+        
+        document.body.appendChild(scriptTag);
+    }
+
+    // --- Event Listeners ---
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        loginStatus.style.display = 'none';
+        const password = document.getElementById('password').value;
+        
+        callApi('checkPassword', { password: password }, function(response) {
+            if (response.success) {
+                loginSection.style.display = 'none';
+                dashboardSection.style.display = 'block';
+            } else {
+                loginStatus.textContent = response.message || 'Incorrect password.';
+                loginStatus.className = 'status-message error';
+                loginStatus.style.display = 'block';
+            }
+        });
+    });
+
+    campaignForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        campaignStatus.style.display = 'none';
+        campaignLoader.style.display = 'block';
+        const templateName = document.getElementById('template').value;
+
+        callApi('runCampaign', { templateName: templateName }, function(response) {
+            campaignLoader.style.display = 'none';
+            campaignStatus.textContent = response.message;
+            campaignStatus.className = response.success ? 'status-message success' : 'status-message error';
+            campaignStatus.style.display = 'block';
+        });
+    });
+</script>
+
+</body>
+</html>
